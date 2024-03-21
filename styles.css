@@ -1,0 +1,22 @@
+.navigation{
+    /* background-color: rgb(19, 83, 114); */
+    /* align-items:center; */
+    padding-right: 10%;
+    width: auto;
+    -ms-flex-item-align: auto;
+    
+    
+}
+.header{
+    background-color: rgb(124, 203, 189);
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+}
+
+a{
+    color: rgba(94, 218, 255, 0.744);
+    size: 100%;
+}
