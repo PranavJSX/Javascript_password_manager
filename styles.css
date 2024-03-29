@@ -3,20 +3,51 @@
     /* align-items:center; */
     padding-right: 10%;
     width: auto;
-    -ms-flex-item-align: auto;
-    
-    
+    -ms-flex-item-align: auto;    
 }
 .header{
-    background-color: rgb(124, 203, 189);
-    position: fixed;
+    background-color: rgb(15, 32, 29);
+    /* position: fixed; */
     width: 100%;
     z-index: 99;
     display: flex;
     justify-content: space-between;
 }
+/* .main_login_form{
+    display: grid;
+    grid-template-columns: 10px,10px;
+} */
+
+.grid_container{
+    display: grid;
+    grid-template-columns: repeat(50px);
+    grid-template-rows: repeat(50px);
+    position: absolute;
+    /* right: 650px; */
+    grid-row-gap: 10px;
+    border-style: solid;
+    margin: auto;
+    position: absolute;
+    top: 30%;
+    left: 600px;
+    width: 300px;
+    text-align: center;
+    padding: 100px;
+}
+
+
 
 a{
-    color: rgba(94, 218, 255, 0.744);
+    color: azure;
     size: 100%;
+    font-size: 20px;
 }
+
+.logo{
+    color: azure;
+    font-size: 50px;
+}
+body{
+    background-color: rgb(97, 67, 169);
+}
+
