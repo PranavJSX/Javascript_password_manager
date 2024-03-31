@@ -33,10 +33,16 @@
     width: 300px;
     text-align: center;
     padding: 100px;
+    background-color: rgb(15, 32, 29);
 }
-
-
-
+.grid_item_2{
+    /* justify-self: start; */
+    color: azure;
+}
+.grid_item_1{
+    /* justify-self: end; */
+    color:azure
+}
 a{
     color: azure;
     size: 100%;
@@ -50,4 +56,9 @@ a{
 body{
     background-color: rgb(97, 67, 169);
 }
+
+.login_button{
+    font-size: 15px;
+}
+
 
