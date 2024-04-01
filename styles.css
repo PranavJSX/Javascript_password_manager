@@ -61,4 +61,32 @@ body{
     font-size: 15px;
 }
 
+.login_form{
+    opacity: 0;
+}
 
+.password_manager_screen{
+    opacity: 1;
+}
+
+table{
+    background-color: rgb(223, 238, 238);
+    /* height: 400px; */
+}
+
+.flexbox-container{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    /* row-gap: 0.20px; */
+    /* max-width: 20px; */
+    gap: 10px;
+}
+
+.flexbox-container:nth-child(n){
+    height: 100px;
+}
+
+button{
+    cursor: pointer;
+}
