@@ -68,6 +68,7 @@ body{
 .password_manager_screen{
     opacity: 0;
     width: max-content;
+    display: block;
 }
 
 table{
