@@ -1,45 +1,4 @@
 
-//ALl selectors 
-const sign_up_button = document.querySelector('.sign_up_button');
-const login_button = document.querySelector('.login_button');
-const user_id_input = document.querySelector('.user_id_input');
-const password_input = document.querySelector('.password_input');
-const login_form = document.querySelector('.login_form');
-const password_manager_screen = document.querySelector('.password_manager_screen');
-const error_place = document.getElementById("wrong_credentials");
-
-let username = "Pranav";
-let password = "Content";
-
-console.log(error_place);
-
-//Click functions
-const switch_to_logged_in_screen=function(){
-    // console.log(login_button);
-    setTimeout(function(){
-        login_form.style.opacity=0;
-        password_manager_screen.style.opacity=1;
-    },50);
-    // console.log('Reached here');
-};
-
-
-//Handling the login cutton click
-login_button.addEventListener("click",function(event){
-    let user_id = user_id_input.value;
-    let password_entered = password_input.value;
-    console.log(user_id);
-    if(username===user_id && password===password_entered){
-    switch_to_logged_in_screen();
-    event.preventDefault();
-}
-else{
-    error_place.innerHTML="Wrong Credentials";
-}
-});
-
-
-<script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
@@ -58,7 +17,65 @@ else{
     measurementId: "G-1P9W1YKGGR"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
+
+import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
+
+//ALl selectors 
+const sign_up_button = document.querySelector('.sign_up_button');
+const login_button = document.querySelector('.login_button');
+const user_id_input = document.querySelector('.user_id_input');
+const password_input = document.querySelector('.password_input');
+const login_form = document.querySelector('.login_form');
+const password_manager_screen = document.querySelector('.password_manager_screen');
+const error_place = document.getElementById("wrong_credentials");
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+
+
+//Click functions
+const switch_to_logged_in_screen=function(){
+    // console.log(login_button);
+    setTimeout(function(){
+        login_form.style.opacity=0;
+        password_manager_screen.style.opacity=1;
+    },50);
+    // console.log('Reached here');
+};
+
+
+//Handling the login cutton click
+login_button.addEventListener("click",function(event){
+    event.preventDefault();
+    let user_id = user_id_input.value;
+    let password_entered = password_input.value;
+    console.log(user_id);
+    if(user_id=='' && password_entered==''){
+        error_place.innerHTML="Please enter your Credentials";
+    }
+    else if(user_id!='' && password_entered!=''){
+        signInWithEmailAndPassword(auth,user_id,password_entered)
+        .then((userCredential)=>{
+            const user = userCredential.user;
+            console.log('Logged in');
+            switch_to_logged_in_screen();
+        })
+        .catch((error)=>{
+            const error_code = error.code;
+            const error_message = error.message;
+            console.log(error_message);
+        });
+
+    }
+    else{        
+    error_place.innerHTML="Wrong Credentials";
+}
+});
+
+
+
+
+  sign_up_button.addEventListener('click',function(){
+    console.log("Sign up button got clicked");
+    window.location.href="signpage.html";
+  });
