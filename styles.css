@@ -62,11 +62,12 @@ body{
 }
 
 .login_form{
-    opacity: 0;
+    opacity: 1;
 }
 
 .password_manager_screen{
-    opacity: 1;
+    opacity: 0;
+    width: max-content;
 }
 
 table{
@@ -78,6 +79,7 @@ table{
     display: flex;
     flex-direction: row;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .flexbox-container:nth-child(n){
@@ -89,4 +91,9 @@ table{
 
 button{
     cursor: pointer;
+}
+
+.password_details_input{
+    border-color: rgb(255, 255, 255);
+    border: solid;
 }
