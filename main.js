@@ -17,8 +17,6 @@ flexbox_descendants=flexbox_container.getElementsByTagName('div');
 
 
 
-
-
 let storage_dict = {
     // 'Facebook':'hostname@12',
     // 'LinkedIn':'LOL22231',
@@ -62,7 +60,6 @@ const add_to_flexbox=function(key,value){
     </tr>`
     flexbox_container.appendChild(row);
     print_flexboxes(storage_dict)
-
 }
 
 
@@ -73,7 +70,7 @@ const print_flexboxes=function(storage_dict){
         //Traversing through the dictionary and picking the values
         console.log(key,value);
         //Putting values in the flexbox tables.
-        flexbox_descendants[i].innerHTML=`<table border="solid">
+        flexbox_descendants[i].innerHTML=`<table border="solid" class="password_details_input">
         <tbody><tr><td colspan="2" align="center">${key}</td></tr>
         <tr><td>${value}</td>
         <td><button>Copy</button></td>
