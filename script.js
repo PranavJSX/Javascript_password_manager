@@ -2,6 +2,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-analytics.js";
+//   import { fetch_from_database } from "./main";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,6 +33,12 @@ const error_place = document.getElementById("wrong_credentials");
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 
+var user_details={
+    "user_id":'XC7lfJMZ4Fcl0nh6ZSs076XQAtk2',
+    "email":'test5@gmail.com',
+    "logged_in":0
+};
+
 
 //Click functions
 const switch_to_logged_in_screen=function(){
@@ -43,13 +50,11 @@ const switch_to_logged_in_screen=function(){
     // console.log('Reached here');
 };
 
-
 //Handling the login cutton click
 login_button.addEventListener("click",function(event){
     event.preventDefault();
     let user_id = user_id_input.value;
     let password_entered = password_input.value;
-    console.log(user_id);
     if(user_id=='' && password_entered==''){
         error_place.innerHTML="Please enter your Credentials";
     }
@@ -57,25 +62,36 @@ login_button.addEventListener("click",function(event){
         signInWithEmailAndPassword(auth,user_id,password_entered)
         .then((userCredential)=>{
             const user = userCredential.user;
-            console.log('Logged in');
+            set_function(user.uid,user_id);
             switch_to_logged_in_screen();
+            fetch_from_database();
         })
         .catch((error)=>{
             const error_code = error.code;
             const error_message = error.message;
-            console.log(error_message);
+            console.log(error_message,error_code);
         });
-
     }
     else{        
     error_place.innerHTML="Wrong Credentials";
 }
 });
 
-
-
-
   sign_up_button.addEventListener('click',function(){
     console.log("Sign up button got clicked");
     window.location.href="signpage.html";
   });
+
+
+const set_function = function(user,email){
+    user_details.user_id=user;
+    user_details.email=email
+    user_details.logged_in=1;
+    console.log(user_details);
+};
+
+
+export {user_details};
+
+
+
