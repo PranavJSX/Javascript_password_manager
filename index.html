@@ -7,12 +7,12 @@
 
 <body>
 <header class="header">
-    <h2 class = "logo">Logo</h2>
+    <h2 class = "logo">Password Manager</h2>
     <nav class="navigation">
-        <a href="#">Home</a>
+        <!-- <a href="#">Home</a>
         <a href="#">About</a>
         <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <a href="#">Contact</a> -->
         <button class="sign_up_button" >Sign-up</button>
     </nav>
 </header>
@@ -42,18 +42,22 @@
             <td><input type="text" id="password_name" value=""></td>
             <tr><td>Enter the Password</td></tr>
             <td><input type="password" id="password_stored"></td>
-            <tr align="center"><td><button class="password_entry_submit">Save the password !</button></td></tr>   
+            <tr><td><button class="password_entry_submit" style="width: 150px;">Save the password !</button></td>
+            <tr><td><button id="showPasswords" style="width: 150px">Show the Passwords!</button></td></tr>
+            </tr>   
         </table>
         <br><br>
     <h2>Passwords Stored</h2><br>
-    <div class="flexbox-container"></div>
+    <div class="flexbox-container" id="flex_container_id">
+        <div></div>
+    </div>
 </div>
 
 
 
 
 <script type="module" src="script.js"></script>
-<script src="main.js"></script>
+<script type="module" src="main.js"></script>
 
 </body>
 
