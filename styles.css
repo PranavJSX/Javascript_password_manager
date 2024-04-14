@@ -98,3 +98,7 @@ button{
     border-color: rgb(255, 255, 255);
     border: solid;
 }
+
+#logout_button{
+    opacity: 0;
+}
