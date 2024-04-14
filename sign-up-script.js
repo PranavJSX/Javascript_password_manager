@@ -45,22 +45,26 @@ sign_in_button.addEventListener('click',function(e){
     e.preventDefault();
     
     console.log('sign in button clicked'); 
-    if(validate_password(entered_password.value) && validate_passwords_same(entered_password.value,confirm_password.value)){
+    if(entered_password.value === '' || entered_password.value === ''){
+        alert('Please enter all the fields');
+        return;
+    }
+    else if(validate_password(entered_password.value) && validate_passwords_same(entered_password.value,confirm_password.value)){
         
         console.log("here");
-        return 0;
+        return ;
     }
     else{
-        createUserWithEmailAndPassword(auth,entered_email.value,entered_password.value)
-        .then((userCredential)=>{
-            const user = userCredential.user
-            alert('success');
-            entered_email.value="";
-            entered_password.value="";
-            confirm_password.value="";
-            const backdisplay=document.getElementById("backdisplay");
-            backdisplay.innerText="Please go back to the Login page"
-        })
+            createUserWithEmailAndPassword(auth,entered_email.value,entered_password.value)
+            .then((userCredential)=>{
+                const user = userCredential.user
+                alert('success');
+                entered_email.value="";
+                entered_password.value="";
+                confirm_password.value="";
+                const backdisplay=document.getElementById("backdisplay");
+                backdisplay.innerText="Please go back to the Login page"
+            })
     }
 });
 
@@ -78,13 +82,17 @@ back_button.addEventListener('click',function(){
 
 const validate_password=function(entered_password){
     if(entered_password.length<6){
-        console.log('password long enough');
-        return true;
+        alert('password not long enough');
+        return false;
     }
-    else return false;
+    else return true;
 };
 
 const validate_passwords_same = function(entered_password,confirm_password){
-    if(entered_password===confirm_password) return true;
-    else return false;
+    console.log(confirm_password,entered_password);
+    if(entered_password!=confirm_password){ 
+        alert('Password Not same');   
+        return false;
+    }
+    else return true;
 }
