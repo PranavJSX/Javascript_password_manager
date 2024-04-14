@@ -29,7 +29,7 @@ const password_input = document.querySelector('.password_input');
 const login_form = document.querySelector('.login_form');
 const password_manager_screen = document.querySelector('.password_manager_screen');
 const error_place = document.getElementById("wrong_credentials");
-
+const logout_button = document.getElementById('logout_button');
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 
@@ -62,12 +62,16 @@ login_button.addEventListener("click",function(event){
         signInWithEmailAndPassword(auth,user_id,password_entered)
         .then((userCredential)=>{
             const user = userCredential.user;
+            logout_button.style.opacity=1;
             set_function(user.uid,user_id);
             switch_to_logged_in_screen();
+            user_id.value = '';
+            password_entered = '';
             fetch_from_database();
         })
         .catch((error)=>{
             const error_code = error.code;
+            alert('Please enter correct credentials');
             const error_message = error.message;
             console.log(error_message,error_code);
         });
