@@ -30,10 +30,9 @@ const password_submit_button = document.querySelector('.password_entry_submit');
 const flexbox_container = document.querySelector('.flexbox-container');
 const password_manager_screen = document.querySelector('.password_manager_screen');
 const showPasswords = document.getElementById('showPasswords');
-
 const flexbox_descendants=flexbox_container.getElementsByTagName('div');
-
-
+const logout_button = document.getElementById('logout_button');
+const login_screen = document.querySelector('.login_form');
 let password_counter = 0;
 let storage_dict = {};
 
@@ -68,7 +67,8 @@ showPasswords.addEventListener('click',async function(e){
     e.preventDefault(); 
     
 });
-//Function to add the newly entered password details
+
+
 password_submit_button.addEventListener('click',async function(event){
     let key = password_name.value;
     let value = password_stored.value;
@@ -104,6 +104,20 @@ password_submit_button.addEventListener('click',async function(event){
 });
 console.log(database.ref);
 // console.log(data_object);
+
+
+//Logout button functionality
+logout_button.addEventListener('click',function(e){
+    logout_button.style.opacity = 0;
+    password_manager_screen.style.opacity = 0;
+    login_screen.style.opacity = 1;
+    e.preventDefault();
+});
+
+
+
+
+
 //Functions
 
 
@@ -201,8 +215,5 @@ const load_buttons=()=>{
         });
     });
 }   
-
-
-
 
 
