@@ -1,4 +1,4 @@
-This readme file contains all the details regarding this pronject. Please before forking or going throught each individual files , go through this once.
+This readme file contains all the details regarding this project. Please before forking or going throught each individual files , go through this once.
 
 # Password manager in JS .
 
