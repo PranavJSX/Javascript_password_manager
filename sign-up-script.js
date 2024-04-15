@@ -50,12 +50,7 @@ sign_in_button.addEventListener('click',function(e){
         return;
     }
     else if(validate_password(entered_password.value) && validate_passwords_same(entered_password.value,confirm_password.value)){
-        
-        console.log("here");
-        return ;
-    }
-    else{
-            createUserWithEmailAndPassword(auth,entered_email.value,entered_password.value)
+        createUserWithEmailAndPassword(auth,entered_email.value,entered_password.value)
             .then((userCredential)=>{
                 const user = userCredential.user
                 alert('success');
@@ -65,6 +60,12 @@ sign_in_button.addEventListener('click',function(e){
                 const backdisplay=document.getElementById("backdisplay");
                 backdisplay.innerText="Please go back to the Login page"
             })
+    }
+    else{
+        console.log(validate_password(entered_password.value))
+        console.log(validate_passwords_same(entered_password.value,confirm_password.value));
+        console.log("here");
+        return ;   
     }
 });
 

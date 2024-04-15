@@ -62,18 +62,16 @@ login_button.addEventListener("click",function(event){
         signInWithEmailAndPassword(auth,user_id,password_entered)
         .then((userCredential)=>{
             const user = userCredential.user;
+            user_id='';
+            password_entered='';
             logout_button.style.opacity=1;
             set_function(user.uid,user_id);
             switch_to_logged_in_screen();
-            user_id.value = '';
-            password_entered = '';
-            fetch_from_database();
+            return;
         })
         .catch((error)=>{
-            const error_code = error.code;
-            alert('Please enter correct credentials');
-            const error_message = error.message;
-            console.log(error_message,error_code);
+          throw error
+            // console.log(error_message,error_code);
         });
     }
     else{        
