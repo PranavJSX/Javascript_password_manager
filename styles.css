@@ -1,0 +1,104 @@
+.navigation{
+    /* background-color: rgb(19, 83, 114); */
+    /* align-items:center; */
+    padding-right: 10%;
+    width: auto;
+    -ms-flex-item-align: auto;    
+}
+.header{
+    background-color: rgb(15, 32, 29);
+    /* position: fixed; */
+    width: 100%;
+    z-index: 99;
+    display: flex;
+    justify-content: space-between;
+}
+/* .main_login_form{
+    display: grid;
+    grid-template-columns: 10px,10px;
+} */
+
+.grid_container{
+    display: grid;
+    grid-template-columns: repeat(50px);
+    grid-template-rows: repeat(50px);
+    position: absolute;
+    /* right: 650px; */
+    grid-row-gap: 10px;
+    border-style: solid;
+    margin: auto;
+    position: absolute;
+    top: 30%;
+    left: 600px;
+    width: 300px;
+    text-align: center;
+    padding: 100px;
+    background-color: rgb(15, 32, 29);
+}
+.grid_item_2{
+    /* justify-self: start; */
+    color: azure;
+}
+.grid_item_1{
+    /* justify-self: end; */
+    color:azure
+}
+a{
+    color: azure;
+    size: 100%;
+    font-size: 20px;
+}
+
+.logo{
+    color: azure;
+    font-size: 50px;
+}
+body{
+    background-color: rgb(97, 67, 169);
+}
+
+.login_button{
+    font-size: 15px;
+}
+
+.login_form{
+    opacity: 1;
+}
+
+.password_manager_screen{
+    opacity: 0;
+    width: max-content;
+    display: block;
+}
+
+table{
+    background-color: rgb(223, 238, 238);
+    /* height: 400px; */
+}
+
+.flexbox-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.flexbox-container:nth-child(n){
+    height: 100px;
+    flex-basis: 100%;
+    width: 100%;
+}
+
+
+button{
+    cursor: pointer;
+}
+
+.password_details_input{
+    border-color: rgb(255, 255, 255);
+    border: solid;
+}
+
+#logout_button{
+    opacity: 0;
+}

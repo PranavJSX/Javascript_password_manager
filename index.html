@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Passsword_manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<header class="header">
+    <h2 class = "logo">Password Manager</h2>
+    <nav class="navigation">
+        <button class="sign_up_button" >Sign-up</button>
+        <button id="logout_button" >Logout</button>
+    </nav>
+</header>
+
+
+    <form class="login_form">
+        <div class="grid_container">
+            <div class="grid_item_1">User id : <input type="text" class="user_id_input">
+            </div>
+            <div class="grid_item_2">Password:<input class="password_input" type="password">
+            </div>
+            <div class="grid_item_3"><button class="login_button">Login</button></div>
+            <p id="wrong_credentials" style="color: aliceblue;"><b>
+            </b></p>
+        </div>
+    </form>
+</div>
+
+
+</div>
+
+<div class="password_manager_screen">
+<h1>Hi Welcome to your personal password manager</h1>
+    <div class="Password_input_div">
+        <table class="password_details_input" border="solid">
+            <tr><td>Enter the site/login you want to save your password for</td></tr>
+            <td><input type="text" id="password_name" value=""></td>
+            <tr><td>Enter the Password</td></tr>
+            <td><input type="password" id="password_stored"></td>
+            <tr><td><button class="password_entry_submit" style="width: 150px;">Save the password !</button></td>
+            <tr><td><button id="showPasswords" style="width: 150px">Show the Passwords!</button></td></tr>
+            </tr>   
+        </table>
+        <br><br>
+    <h2>Passwords Stored</h2><br>
+    <div class="flexbox-container" id="flex_container_id">
+        <div></div>
+    </div>
+</div>
+
+
+
+
+<script type="module" src="script.js"></script>
+<script type="module" src="main.js"></script>
+
+</body>
+
+</html>
