@@ -2,7 +2,7 @@ This readme file contains all the details regarding this project. Please before 
 
 # Password manager in JS .
 
-This project contains a personal password manager which will send the required password and details to the user's email address.
+This project contains a personal password manager which will can store passwords for users as per requirement.
 
 ## Details of the Files .
 * This project contains 3 JS script files , one which can handle the User sign-up's (sign-up-script.js) , one that handles the user's login functionality (script.js) and the third one that (main.js) contains the functionality for the password manager.
