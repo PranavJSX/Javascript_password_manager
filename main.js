@@ -15,10 +15,12 @@ import {user_details} from "./script.js";
 // import {logged_in} from "./script.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js"; 
 import { getAuth,signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-import {getDatabase,ref,onValue,child,set,push,update} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+import {getDatabase,ref,onValue,child,set,push,update,remove} from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
 
 const database = getDatabase();
 const app=initializeApp(firebaseConfig);
+
 
 var fetched_object={};
 // console.log(data_object);
@@ -41,13 +43,22 @@ let storage_dict = {};
 console.log(storage_dict);
 // console.log(storage_dict['Facebook']);
 // user_details.user_id='';
+user_details.user_id='ywe0nxhKMNhF1krTZsb7XWTg4t52';
+user_details.email = 'test7@test.com';
 console.log(user_details);
 //Event Listeners
 showPasswords.addEventListener('click',async function(e){
     let fetched_object =await fetch_from_database();
     console.log(fetched_object);
     let our_obj = fetched_object[user_details.user_id]
-    if(user_details.user_id in fetched_object){
+    console.log(our_obj);
+    const arr = Object.keys(our_obj);
+    console.log(arr.length);
+    if(user_details.user_id in fetched_object && arr.length==3){
+        if(our_obj.passwords_stored.length<1 || Object.values(our_obj.passwords_stored)===undefined){
+            alert('No passwords stored');
+        }
+        else{
         let pass_name , pass_stored;
         pass_name = Object.values(our_obj.passwords_stored);
         console.log(Object.values(our_obj.passwords_stored))
@@ -58,6 +69,7 @@ showPasswords.addEventListener('click',async function(e){
             storage_dict[pass_name] = pass_stored;
         });
     }
+}
     else{
         alert('No passwords stored yet!')
         return;
@@ -103,7 +115,6 @@ password_submit_button.addEventListener('click',async function(event){
     
 });
 console.log(database.ref);
-// console.log(data_object);
 
 
 //Logout button functionality
@@ -133,11 +144,11 @@ const print_flexboxes=function(storage_dict){
         let new_div = document.createElement('div');
         flexbox_container.appendChild(new_div);
 
-        flexbox_descendants[i].innerHTML=`<table border="solid" class="password_details_input">
-        <tbody><tr><td colspan="2" align="center">${key}</td></tr>
+        flexbox_descendants[i].innerHTML=`<table border="solid" class="password_details_input" id='password_table${i}'>
+        <tbody><tr><td colspan="2" align="center" id='password_name${i}'>${key}</td></tr>
         <tr><td id='password_stored${i}' type="password">${value}</td>
-        <td><button id='button_copy${i}' class="copy_buttons">Copy</button></td>
-        </tr>
+        <td><button id='button_copy${i}' class="copy_buttons">Copy</button></td></tr>
+        <tr><td colspan="2"><button id='button_delete${i}' class = "delete_button">Delete</button></td></tr>
     </tbody></table>
     `;
     
@@ -148,11 +159,11 @@ const print_flexboxes=function(storage_dict){
 
 
 const data_object = {
-    "user_id":'test1',
-    "pass":"testpassword",
-    "password_name":"github",
-    "email":'test@test.com'
-}
+    "user_id":'ywe0nxhKMNhF1krTZsb7XWTg4t52',
+    "pass":'',
+    "password_name":'',
+    "email":'test7@test.com'
+};
 
 
 
@@ -190,6 +201,14 @@ const fetch_from_database=function(){
 });
 };
 
+const delete_pass_from_db = function(password){
+    console.log(password);
+    // console.log(data_object);
+        const db = getDatabase();
+        remove(ref(db,'users/' + data_object.user_id + '/' + 'passwords_stored' + '/' + password));
+        alert('success');
+    
+};
 
 
 
@@ -197,13 +216,18 @@ const fetch_from_database=function(){
 
 const load_buttons=()=>{
     const arr=[];
+    const arr2=[];
     for(let i=0;i<flexbox_container.childElementCount-1;i++){
         let temp = `button_copy${i}`
+        let temp2 = `button_delete${i}`;
         arr[i] = document.getElementById(temp);
+        arr2[i] = document.getElementById(temp2);
     }
     console.log(arr);
-    console.log(document.getElementById('button_copy0'));
+    console.log(arr2);
     arr.forEach(button => {
+        if(button!=null){
+        console.log(button);
         button.addEventListener('click',function(){
            console.log(button);
            console.log(arr.indexOf(button));
@@ -211,8 +235,26 @@ const load_buttons=()=>{
            let our_password = document.getElementById(temp);
            our_password = our_password.textContent;
            navigator.clipboard.writeText(our_password);
+        }); 
+    }
+    });
+    arr2.forEach(button=>{
+        if(button!=null){
+        button.addEventListener('click',function(){
+        console.log(button);
+        let temp = `password_name${arr2.indexOf(button)}`;
+        console.log(temp);
+        let password_name_to_be_deleted = document.getElementById(temp);
+        console.log(password_name_to_be_deleted.textContent);   
+        delete_pass_from_db(password_name_to_be_deleted.textContent);
 
-        });
+        let table_id = document.getElementById(`password_table${arr2.indexOf(button)}`);
+        table_id.parentNode.removeChild(table_id);
+        console.log(storage_dict);
+        delete storage_dict[password_name_to_be_deleted.textContent];
+        console.log(storage_dict);
+    })
+    }
     });
 }   
 
