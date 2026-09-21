@@ -2,13 +2,6 @@ console.log('this is the main.js');
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDp4AJ2T_R96emO-6r1IiWNe67sldwe5IY",
-    authDomain: "js-password-manager.firebaseapp.com",
-    projectId: "js-password-manager",
-    storageBucket: "js-password-manager.appspot.com",
-    messagingSenderId: "124927854684",
-    appId: "1:124927854684:web:e92c3a8d435cfd6ef97e99",
-    measurementId: "G-1P9W1YKGGR"
   };
 
 import {user_details} from "./script.js";
